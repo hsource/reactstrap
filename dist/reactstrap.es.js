@@ -3454,19 +3454,21 @@ function (_React$Component) {
     _this.onClosed = _this.onClosed.bind(_assertThisInitialized(_this));
     _this.manageFocusAfterClose = _this.manageFocusAfterClose.bind(_assertThisInitialized(_this));
     _this.state = {
-      isOpen: props.isOpen
+      isOpen: false
     };
-
-    if (props.isOpen) {
-      _this.init();
-    }
-
     return _this;
   }
 
   var _proto = Modal.prototype;
 
   _proto.componentDidMount = function componentDidMount() {
+    if (this.props.isOpen) {
+      this.init();
+      this.setState({
+        isOpen: true
+      });
+    }
+
     if (this.props.onEnter) {
       this.props.onEnter();
     }
